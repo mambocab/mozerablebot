@@ -18,15 +18,19 @@ twitter_api = Twython(secrets['TWITTER_KEY'], secrets['TWITTER_SECRET'],
                       secrets['TWITTER_OAUTH_SECRET'])
 
 # get a random noun that isn't a word of oppression
+wordnik_params = {'hasDictionaryDef': True,
+                  'includePartOfSpeech': 'noun',
+                  'minCorpusCount': '20000',
+                  'maxCorpusCount': -1,
+                  'minDictionaryCount': 1,
+                  'maxDictionaryCount': -1,
+                  'excludePartOfSpeech': 'proper-noun,proper-noun-plural,noun-plural,proper-noun-posessive,noun-posessive,suffix,family-name,idiom,affix',
+                  'minLength': 3,
+                  'maxLength': -1,
+                  'api_key': secrets['WORDNIK_KEY']}
 noun = None
 while noun is None:
-    # mega-gross; don't know why I couldn't get wordnik api module working
-    r = requests.get('http://api.wordnik.com/v4/words.json/randomWord?'+
-        'hasDictionaryDef=true&includePartOfSpeech=noun&minCorpusCount=20000'+
-        '&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1'+
-        '&excludePartOfSpeech=proper-noun,proper-noun-plural,noun-plural'+
-        'proper-noun-posessive,noun-possessive,suffix,family-name,idiom,affix'+
-        '&minLength=3&maxLength=-1&api_key={}'.format(secrets['WORDNIK_KEY']))
+    r = requests.get('http://api.wordnik.com/v4/words.json/randomWord', params=wordnik_params)
     noun = r.json()['word']
 
     if noun.lower() in badwords:
