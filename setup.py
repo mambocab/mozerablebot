@@ -6,5 +6,5 @@ setup(name='mozerablebot',
       author='Jim Witschey',
       author_email='jim.witschey@gmail.com',
       url='',
-     install_requires=['twython'],
+     install_requires=['twython', 'inflect'],
      )
