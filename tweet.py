@@ -26,10 +26,11 @@ while noun is None:
         '&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1'+
         '&excludePartOfSpeech=proper-noun,proper-noun-plural,noun-plural'+
         'proper-noun-posessive,noun-possessive,suffix,family-name,idiom,affix'+
-        '&minLength=5&maxLength=-1&api_key={}'.format(secrets['WORDNIK_KEY']))
+        '&minLength=3&maxLength=-1&api_key={}'.format(secrets['WORDNIK_KEY']))
     noun = r.json()['word']
 
     if noun.lower() in badwords:
         noun = None
 
-twitter_api.update_status(status=noun)
+status = "I was looking for a {n}, and then I found a {n}\nand heaven knows I'm miserable now".format(n=noun)
+twitter_api.update_status(status=status)
