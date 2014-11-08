@@ -36,7 +36,7 @@ while noun is None:
     if sing:
         noun = sing
 
-    if noun.lower() in badwords:
+    if any(b in noun for b in badwords):
         noun = None
 
 status = "I was looking for a {n}, and then I found a {n}\nand Heaven knows I'm miserable now".format(n=noun)
