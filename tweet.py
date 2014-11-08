@@ -1,8 +1,8 @@
 import random
 
-# only tweet about 5x/day
-if random.random() > 5 / (24 * 60):
-    exit(0)
+# # only tweet about 5x/day
+# if random.random() > 5 / (24 * 60):
+#     exit(0)
 
 from badwords import badwords
 
