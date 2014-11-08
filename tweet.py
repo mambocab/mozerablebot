@@ -26,16 +26,16 @@ twitter_api = Twython(secrets['TWITTER_KEY'], secrets['TWITTER_SECRET'],
 # get a random noun that isn't a word of oppression
 noun = None
 while noun is None:
-    r = requests.prepare('http://api.wordnik.com/v4/words.json/randomWord?' +
-                         'api_key={}'.format(secret['WORDNIK_KEY']) +
-                         '&maxDictionaryCount=-1&includePartOfSpeech=noun' +
-                         '&minLength=3&maxCorpusCount=-1' +
-                         '&minDictionaryCount=1&maxLength=-1' +
-                         '&excludePartOfSpeech=proper-noun,' +
-                         'proper-noun-plural,noun-plural,' +
-                         'proper-noun-posessive,noun-posessive,suffix,' +
-                         'family-name,idiom,affix&hasDictionaryDef=True' +
-                         '&minCorpusCount=20000')
+    r = requests.get('http://api.wordnik.com/v4/words.json/randomWord?' +
+                     'api_key={}'.format(secret['WORDNIK_KEY']) +
+                     '&maxDictionaryCount=-1&includePartOfSpeech=noun' +
+                     '&minLength=3&maxCorpusCount=-1' +
+                     '&minDictionaryCount=1&maxLength=-1' +
+                     '&excludePartOfSpeech=proper-noun,' +
+                     'proper-noun-plural,noun-plural,' +
+                     'proper-noun-posessive,noun-posessive,suffix,' +
+                     'family-name,idiom,affix&hasDictionaryDef=True' +
+                     '&minCorpusCount=20000')
     noun = r.json()['word']
 
     if noun.lower() in badwords:
