@@ -1,3 +1,9 @@
+import random
+
+# only tweet about 5x/day
+if random.random() > 5 / (24 * 60):
+    exit(0)
+
 from badwords import badwords
 
 from twython import Twython
@@ -18,19 +24,18 @@ twitter_api = Twython(secrets['TWITTER_KEY'], secrets['TWITTER_SECRET'],
                       secrets['TWITTER_OAUTH_SECRET'])
 
 # get a random noun that isn't a word of oppression
-wordnik_params = {'hasDictionaryDef': True,
-                  'includePartOfSpeech': 'noun',
-                  'minCorpusCount': '20000',
-                  'maxCorpusCount': -1,
-                  'minDictionaryCount': 1,
-                  'maxDictionaryCount': -1,
-                  'excludePartOfSpeech': 'proper-noun,proper-noun-plural,noun-plural,proper-noun-posessive,noun-posessive,suffix,family-name,idiom,affix',
-                  'minLength': 3,
-                  'maxLength': -1,
-                  'api_key': secrets['WORDNIK_KEY']}
 noun = None
 while noun is None:
-    r = requests.get('http://api.wordnik.com/v4/words.json/randomWord', params=wordnik_params)
+    r = requests.prepare('http://api.wordnik.com/v4/words.json/randomWord?' +
+                         'api_key={}'.format(secret['WORDNIK_KEY']) +
+                         '&maxDictionaryCount=-1&includePartOfSpeech=noun' +
+                         '&minLength=3&maxCorpusCount=-1' +
+                         '&minDictionaryCount=1&maxLength=-1' +
+                         '&excludePartOfSpeech=proper-noun,' +
+                         'proper-noun-plural,noun-plural,' +
+                         'proper-noun-posessive,noun-posessive,suffix,' +
+                         'family-name,idiom,affix&hasDictionaryDef=True' +
+                         '&minCorpusCount=20000')
     noun = r.json()['word']
 
     if noun.lower() in badwords:
