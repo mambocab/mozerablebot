@@ -14,4 +14,4 @@ The `cron` script that runs the bot is in `.openshift/cron/minutely/tweet.sh`. I
 
 Uses the [badwords list](https://github.com/dariusk/wordfilter/blob/master/lib/badwords.json) from [Darius Kazemi's `wordfilter` library](https://github.com/dariusk/wordfilter/). I welcome any reports of racist, sexist, ablist, transphobic, etc. language as GitHub issues or over Twitter.
 
-Profile image from (The Guardian)[http://www.theguardian.com/music/2010/sep/03/morrissey-simon-armitage-interview].
+Profile image from [The Guardian](http://www.theguardian.com/music/2010/sep/03/morrissey-simon-armitage-interview).
