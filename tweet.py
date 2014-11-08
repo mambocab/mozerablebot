@@ -27,7 +27,7 @@ twitter_api = Twython(secrets['TWITTER_KEY'], secrets['TWITTER_SECRET'],
 noun = None
 while noun is None:
     r = requests.get('http://api.wordnik.com/v4/words.json/randomWord?' +
-                     'api_key={}'.format(secret['WORDNIK_KEY']) +
+                     'api_key={}'.format(secrets['WORDNIK_KEY']) +
                      '&maxDictionaryCount=-1&includePartOfSpeech=noun' +
                      '&minLength=3&maxCorpusCount=-1' +
                      '&minDictionaryCount=1&maxLength=-1' +
