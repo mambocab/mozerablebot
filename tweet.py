@@ -36,5 +36,5 @@ while noun is None:
     if noun.lower() in badwords:
         noun = None
 
-status = "I was looking for a {n}, and then I found a {n}\nand heaven knows I'm miserable now".format(n=noun)
+status = "I was looking for a {n}, and then I found a {n}\nand Heaven knows I'm miserable now".format(n=noun)
 twitter_api.update_status(status=status)
