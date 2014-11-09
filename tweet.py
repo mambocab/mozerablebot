@@ -5,6 +5,8 @@ import inflect
 import os
 import json
 
+inflector = inflect.engine()
+
 # get wordnik and twitter keys from ${OPENSHIFT_DATA_DIR}secrets.json
 datadir = os.environ['OPENSHIFT_DATA_DIR']
 with open(datadir + 'secrets.json') as secrets_data:
@@ -32,12 +34,14 @@ while noun is None:
                      '&minCorpusCount=20000')
     noun = r.json()['word']
     # doublecheck for plural nouns
-    sing = inflect.engine().singular_noun(noun)
+    sing = inflector.singular_noun(noun)
     if sing:
         noun = sing
 
     if any(b in noun for b in badwords):
         noun = None
 
-status = "I was looking for a {n}, and then I found a {n}\nand Heaven knows I'm miserable now".format(n=noun)
+
+
+status = "I was looking for {n}, and then I found {n}\nand Heaven knows I'm miserable now".format(n=inflector.a(noun))
 twitter_api.update_status(status=status)
