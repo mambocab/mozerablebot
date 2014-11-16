@@ -45,3 +45,9 @@ badwords = {
     'raghead',
     'negro'
 }
+
+def contains_badword(s):
+    return any(b in s for b in badwords)
+
+class ContainsBadWordException(ValueError):
+    pass
