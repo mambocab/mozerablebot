@@ -1,4 +1,4 @@
-You were looking for a bot, and then you found a bot. A love letter to Morrissey.
+You were looking for a bot, and then you found a bot.
 
 ## Use
 
